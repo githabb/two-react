@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId } from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
@@ -39,12 +40,13 @@ const Home = () => {
     //   });
     axios
       .get(
-        `https://65b23fcb9bfb12f6eafd44bc.mockapi.io/items?page=${currentPage}&limit=4&${category}${search}&sortBy=${sortBy}&order=${order},`
+        `https://65b23fcb9bfb12f6eafd44bc.mockapi.io/items?page=${currentPage}${search}&limit=4&${category}&sortBy=${sortBy}&order=${order},`
       )
       .then((response) => {
         setItems(response.data);
         setIsLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
